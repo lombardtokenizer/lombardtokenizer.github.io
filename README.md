@@ -1,6 +1,6 @@
 # LombardTokenizer: Disentanglement and Control of the Vocal Effort in a  Neural Speech Codec
 
-<a href='https://lombardtokenizer.github.io/lombardtokenizer.github.io-main/'><img src='https://img.shields.io/badge/Project-Page-Green'></a> 
+<a href='https://lombardtokenizer.github.io/'><img src='https://img.shields.io/badge/Project-Page-Green'></a> 
 
 ## Abstract
 Disentangling distinct types of information in speech representations is crucial for improving speech synthesis 
