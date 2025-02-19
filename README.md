@@ -1,17 +1,17 @@
-# LombardTokenizer: Disentanglement and Control of the Vocal Effort in a  Neural Speech Codec
+# LombardTokenizer: Disentanglement and Control of Vocal Effort in a Neural Speech Codec
 
 <a href='https://lombardtokenizer.github.io/'><img src='https://img.shields.io/badge/Project-Page-Green'></a> 
 
 ## Abstract
 Disentangling distinct types of information in speech representations is crucial for improving speech synthesis 
 and voice conversion systems. In this work, we introduce LombardTokenizer, a neural speech codec able to separate 
-features related to the vocal effort from other acoustic (and semantic) information. This model is built on 
-SpeechTokenizer, a model proposed in the literature based on multi-stage quantization, which focused on isolating 
-semantic content in its first quantization layer. We show that the level of vocal effort can be effectively captured 
-in the second quantization layer by conditioning the quantization layer with neural encoders trained to represent 
-the vocal effort. Experimental results demonstrate that the proposed method significantly outperforms existing 
-methods in neutral-to-Lombard speech conversion while maintaining excellent speech synthesis quality, offering 
-improved control over vocal effort and naturalness of synthesized speech.
+features related to vocal effort from other acoustic (and semantic) information. This model is built on SpeechTokenizer, 
+a model proposed in the literature based on multi-stage quantisation, which focused on isolating semantic content in 
+its first quantisation layer. We show that the level of vocal effort can be effectively captured in the second 
+quantisation layer by conditioning the quantisation layer with neural encoders trained to represent vocal effort. 
+Experimental results demonstrate that the proposed method significantly outperforms existing methods in speech 
+conversion between neutral and Lombard speech, while maintaining excellent speech synthesis quality, offering improved 
+control over vocal effort and naturalness of synthesised speech.
 
 <br>
 <p align="center">
@@ -45,12 +45,6 @@ Requirements:
 * Python >= 3.9
 * PyTorch v2.5.1
 * Torchaudio v2.5.1
-* Install dependencies
-    ```bash
-    git clone 
-    cd LombardTokenizer
-    pip install -r requirements.txt
-    ```
 
 ## Data List
 | Dataset | Usage |Description|
@@ -64,7 +58,7 @@ Requirements:
 |:----|:----:|:----|
 |[HuBERT](https://arxiv.org/pdf/2106.07447)|None|Pre-trained model from [HugginFace](https://huggingface.co/facebook/hubert-base-ls960)|
 |[mHuBERT](https://arxiv.org/pdf/2406.06371)|None|Pre-trained model from [HugginFace](https://huggingface.co/utter-project/mHuBERT-147)|
-|[FreeVC](https://arxiv.org/pdf/2210.15418)|Avid|Pre-trained model from [HugginFace](https://huggingface.co/spaces/OlaWod/FreeVC/tree/main)|
+|[FreeVC](https://arxiv.org/pdf/2210.15418)|LibriSpeech and Avid|Implementation of FreeVC following [OlaWod](https://github.com/OlaWod/FreeVC)|
 |[EnCodec](https://arxiv.org/pdf/2210.13438)|LibriSpeech and Avid|Implementation of EnCodec following [AcademiCodec](https://github.com/yangdongchao/AcademiCodec/tree/master?tab=readme-ov-file)|
 |[SpeechTokenizer](https://arxiv.org/pdf/2308.16692)|LibriSpeech and Avid|Implementation of SpeechTokenizer following [SpeechTokenizer](https://github.com/ZhangXInFD/SpeechTokenizer/tree/main)|
 |[LombardTokenzer_lomb-1]()|LibriSpeech and Avid|Regularised with the d-vector-based encoder|
