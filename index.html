@@ -2,13 +2,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>LombardTokenizer: Disentanglement and Control of Vocal Effort in a Neural Speech Codec</title>
+        <title>LombardTokenizer: Disentanglement and Control of the Vocal Effort in a  Neural Speech Codec</title>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
         <script src="css/jquery-3.5.js"></script>
     </head>
     <body>
 <div class="container">
-    <div id="text1">LombardTokenizer <br/> Disentanglement and Control of Vocal Effort in a Neural Speech Codec</div>
+    <div id="text1">LombardTokenizer <br/> Disentanglement and Control of the Vocal Effort in a  Neural Speech Codec</div>
     <div id="intro">
         <br>
         <p>
@@ -24,16 +24,16 @@
 </div>
 <div class="content-container">
     <img src="data/lombardtokenizer.png" style="width:70%">
-    <p>        
+    <p>
         Disentangling distinct types of information in speech representations is crucial for improving speech synthesis 
         and voice conversion systems. In this work, we introduce LombardTokenizer, a neural speech codec able to separate 
-        features related to vocal effort from other acoustic (and semantic) information. This model is built on SpeechTokenizer, 
-        a model proposed in the literature based on multi-stage quantisation, which focused on isolating semantic content in its 
-        first quantisation layer. We show that the level of vocal effort can be effectively captured in the second quantisation 
-        layer by conditioning the quantisation layer with neural encoders trained to represent vocal effort. Experimental results 
-        demonstrate that the proposed method significantly outperforms existing methods in speech conversion between neutral and 
-        Lombard speech, while maintaining excellent speech synthesis quality, offering improved control over vocal effort and 
-        naturalness of synthesised speech.
+        features related to the vocal effort from other acoustic (and semantic) information. This model is built on 
+        SpeechTokenizer, a model proposed in the literature based on multi-stage quantization, which focused on isolating 
+        semantic content in its first quantization layer. We show that the level of vocal effort can be effectively captured 
+        in the second quantization layer by conditioning the quantization layer with neural encoders trained to represent 
+        the vocal effort. Experimental results demonstrate that the proposed method significantly outperforms existing 
+        methods in neutral-to-Lombard speech conversion while maintaining excellent speech synthesis quality, offering 
+        improved control over vocal effort and naturalness of synthesized speech.
     </p>
     <br/>
 </div>
@@ -41,8 +41,7 @@
 
 <div class="content-container">
     <script src="css/wavesurfer.js"></script>
-    <div class="content-title">Example Neutral-to-Lombard Conversion</div>
-
+    <div class="content-title">Neutral-to-Lombard Conversion - AVID - Intra</div>
     <table border="0" class="inlineTable">
         <tr>
             <th>      Conversion       </th>
@@ -938,6 +937,910 @@
                             progressColor: 'purple'
                         });
                 wavesurfer_token_prd_8.load('data/Avid/sp42/sp42_sen8_loud2soft_token_prd_intra_same.wav');
+            </script>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="content-container">
+    <script src="css/wavesurfer.js"></script>
+    <div class="content-title">Neutral-to-Lombard Conversion - AVID - Inter</div>
+    <table border="0" class="inlineTable">
+        <tr>
+            <th>      Conversion       </th>
+            <th>       Original        </th>
+            <th>        Target         </th>
+            <th>    FreeVC_speaker     </th>
+            <th>    FreeVC_lombard     </th>
+            <th>LombardTokenizer_lomb-1</th>
+            <th>LombardTokenizer_lomb-2</th>
+        </tr>
+        <tr>
+            <th>Normal to Very Loud</th>
+            <td>
+                <div id="orig_waveform_1"></div>
+                <button id="orig_waveform_1" class="play-button-demo btn btn-primary" onclick="wavesurfer_orig_1.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_orig_1 = WaveSurfer.create({
+                                container: '#orig_waveform_1',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_orig_1.load('data/Avid/sp41/sp41_sen1_norm.wav');
+                </script>
+           </td>
+            <td>
+                <div id="target_waveform_1"></div>
+                <button id="target_waveform_1" class="play-button-demo btn btn-primary" onclick="wavesurfer_target_1.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_target_1 = WaveSurfer.create({
+                                container: '#target_waveform_1',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_target_1.load('data/Avid/sp43/sp43_sen1_very.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_spk_1"></div>
+                <button id="freevc_spk_1" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_spk_1.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_spk_1 = WaveSurfer.create({
+                                container: '#freevc_spk_1',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_spk_1.load('data/Avid/sp41/sp41_sen1_norm2very_freevc_spk_inter_same.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_lmb_1"></div>
+                <button id="freevc_lmb_1" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_lmb_1.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_lmb_1 = WaveSurfer.create({
+                                container: '#freevc_lmb_1',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_lmb_1.load('data/Avid/sp41/sp41_sen1_norm2very_freevc_lmb_inter_same.wav');
+                </script>
+           </td>
+           <td>
+            <div id="token_enc_1"></div>
+            <button id="token_enc_1" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_enc_1.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_enc_1 = WaveSurfer.create({
+                            container: '#token_enc_1',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_enc_1.load('data/Avid/sp41/sp41_sen1_norm2very_token_enc_inter_same.wav');
+            </script>
+            </td>
+            <td>
+            <div id="token_prd_1"></div>
+            <button id="token_prd_1" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_prd_1.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_prd_1 = WaveSurfer.create({
+                            container: '#token_prd_1',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_prd_1.load('data/Avid/sp41/sp41_sen1_norm2very_token_prd_inter_same.wav');
+            </script>
+            </td>
+        </tr>
+        <tr>
+            <th>Very Loud to Normal</th>
+            <td>
+                <div id="orig_waveform_2"></div>
+                <button id="orig_waveform_2" class="play-button-demo btn btn-primary" onclick="wavesurfer_orig_2.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_orig_2 = WaveSurfer.create({
+                                container: '#orig_waveform_2',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_orig_2.load('data/Avid/sp41/sp41_sen2_very.wav');
+                </script>
+           </td>
+            <td>
+                <div id="target_waveform_2"></div>
+                <button id="target_waveform_2" class="play-button-demo btn btn-primary" onclick="wavesurfer_target_2.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_target_2 = WaveSurfer.create({
+                                container: '#target_waveform_2',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_target_2.load('data/Avid/sp43/sp43_sen2_norm.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_spk_2"></div>
+                <button id="freevc_spk_2" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_spk_2.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_spk_2 = WaveSurfer.create({
+                                container: '#freevc_spk_2',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_spk_2.load('data/Avid/sp41/sp41_sen2_very2norm_freevc_spk_inter_same.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_lmb_2"></div>
+                <button id="freevc_lmb_2" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_lmb_2.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_lmb_2 = WaveSurfer.create({
+                                container: '#freevc_lmb_2',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_lmb_2.load('data/Avid/sp41/sp41_sen2_very2norm_freevc_lmb_inter_same.wav');
+                </script>
+           </td>
+           <td>
+            <div id="token_enc_2"></div>
+            <button id="token_enc_2" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_enc_2.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_enc_2 = WaveSurfer.create({
+                            container: '#token_enc_2',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_enc_2.load('data/Avid/sp41/sp41_sen2_very2norm_token_enc_inter_same.wav');
+            </script>
+            </td>
+            <td>
+            <div id="token_prd_2"></div>
+            <button id="token_prd_2" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_prd_2.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_prd_2 = WaveSurfer.create({
+                            container: '#token_prd_2',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_prd_2.load('data/Avid/sp41/sp41_sen2_very2norm_token_prd_inter_same.wav');
+            </script>
+            </td>
+        </tr>
+        <tr>
+            <th>Soft to Loud</th>
+            <td>
+                <div id="orig_waveform_3"></div>
+                <button id="orig_waveform_3" class="play-button-demo btn btn-primary" onclick="wavesurfer_orig_3.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_orig_3 = WaveSurfer.create({
+                                container: '#orig_waveform_3',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_orig_3.load('data/Avid/sp41/sp41_sen3_soft.wav');
+                </script>
+           </td>
+            <td>
+                <div id="target_waveform_3"></div>
+                <button id="target_waveform_3" class="play-button-demo btn btn-primary" onclick="wavesurfer_target_3.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_target_3 = WaveSurfer.create({
+                                container: '#target_waveform_3',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_target_3.load('data/Avid/sp43/sp43_sen3_loud.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_spk_3"></div>
+                <button id="freevc_spk_3" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_spk_3.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_spk_3 = WaveSurfer.create({
+                                container: '#freevc_spk_3',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_spk_3.load('data/Avid/sp41/sp41_sen3_soft2loud_freevc_spk_inter_same.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_lmb_3"></div>
+                <button id="freevc_lmb_3" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_lmb_3.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_lmb_3 = WaveSurfer.create({
+                                container: '#freevc_lmb_3',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_lmb_3.load('data/Avid/sp41/sp41_sen3_soft2loud_freevc_lmb_inter_same.wav');
+                </script>
+           </td>
+           <td>
+            <div id="token_enc_3"></div>
+            <button id="token_enc_3" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_enc_3.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_enc_3 = WaveSurfer.create({
+                            container: '#token_enc_3',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_enc_3.load('data/Avid/sp41/sp41_sen3_soft2loud_token_enc_inter_same.wav');
+            </script>
+            </td>
+            <td>
+            <div id="token_prd_3"></div>
+            <button id="token_prd_3" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_prd_3.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_prd_3 = WaveSurfer.create({
+                            container: '#token_prd_3',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_prd_3.load('data/Avid/sp41/sp41_sen3_soft2loud_token_prd_inter_same.wav');
+            </script>
+            </td>
+        </tr>
+        <tr>
+            <th>Loud to Soft</th>
+            <td>
+                <div id="orig_waveform_4"></div>
+                <button id="orig_waveform_4" class="play-button-demo btn btn-primary" onclick="wavesurfer_orig_4.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_orig_4 = WaveSurfer.create({
+                                container: '#orig_waveform_4',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_orig_4.load('data/Avid/sp41/sp41_sen4_loud.wav');
+                </script>
+           </td>
+            <td>
+                <div id="target_waveform_4"></div>
+                <button id="target_waveform_4" class="play-button-demo btn btn-primary" onclick="wavesurfer_target_4.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_target_4 = WaveSurfer.create({
+                                container: '#target_waveform_4',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_target_4.load('data/Avid/sp43/sp43_sen4_soft.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_spk_4"></div>
+                <button id="freevc_spk_4" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_spk_4.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_spk_4 = WaveSurfer.create({
+                                container: '#freevc_spk_4',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_spk_4.load('data/Avid/sp41/sp41_sen4_loud2soft_freevc_spk_inter_same.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_lmb_4"></div>
+                <button id="freevc_lmb_4" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_lmb_4.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_lmb_4 = WaveSurfer.create({
+                                container: '#freevc_lmb_4',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_lmb_4.load('data/Avid/sp41/sp41_sen4_loud2soft_freevc_lmb_inter_same.wav');
+                </script>
+           </td>
+           <td>
+            <div id="token_enc_4"></div>
+            <button id="token_enc_4" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_enc_4.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_enc_4 = WaveSurfer.create({
+                            container: '#token_enc_4',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_enc_4.load('data/Avid/sp41/sp41_sen4_loud2soft_token_enc_inter_same.wav');
+            </script>
+            </td>
+            <td>
+            <div id="token_prd_4"></div>
+            <button id="token_prd_4" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_prd_4.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_prd_4 = WaveSurfer.create({
+                            container: '#token_prd_4',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_prd_4.load('data/Avid/sp41/sp41_sen4_loud2soft_token_prd_inter_same.wav');
+            </script>
+            </td>
+        </tr>
+        <tr>
+            <th>Normal to Very Loud</th>
+            <td>
+                <div id="orig_waveform_5"></div>
+                <button id="orig_waveform_5" class="play-button-demo btn btn-primary" onclick="wavesurfer_orig_5.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_orig_5 = WaveSurfer.create({
+                                container: '#orig_waveform_5',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_orig_5.load('data/Avid/sp42/sp42_sen5_norm.wav');
+                </script>
+           </td>
+            <td>
+                <div id="target_waveform_5"></div>
+                <button id="target_waveform_5" class="play-button-demo btn btn-primary" onclick="wavesurfer_target_5.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_target_5 = WaveSurfer.create({
+                                container: '#target_waveform_5',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_target_5.load('data/Avid/sp45/sp45_sen5_very.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_spk_5"></div>
+                <button id="freevc_spk_5" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_spk_5.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_spk_5 = WaveSurfer.create({
+                                container: '#freevc_spk_5',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_spk_5.load('data/Avid/sp42/sp42_sen5_norm2very_freevc_spk_inter_same.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_lmb_5"></div>
+                <button id="freevc_lmb_5" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_lmb_5.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_lmb_5 = WaveSurfer.create({
+                                container: '#freevc_lmb_5',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_lmb_5.load('data/Avid/sp42/sp42_sen5_norm2very_freevc_lmb_inter_same.wav');
+                </script>
+           </td>
+           <td>
+            <div id="token_enc_5"></div>
+            <button id="token_enc_5" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_enc_5.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_enc_5 = WaveSurfer.create({
+                            container: '#token_enc_5',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_enc_5.load('data/Avid/sp42/sp42_sen5_norm2very_token_enc_inter_same.wav');
+            </script>
+            </td>
+            <td>
+            <div id="token_prd_5"></div>
+            <button id="token_prd_5" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_prd_5.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_prd_5 = WaveSurfer.create({
+                            container: '#token_prd_5',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_prd_5.load('data/Avid/sp42/sp42_sen5_norm2very_token_prd_inter_same.wav');
+            </script>
+            </td>
+        </tr>
+        <tr>
+            <th>Very Loud to Normal</th>
+            <td>
+                <div id="orig_waveform_6"></div>
+                <button id="orig_waveform_6" class="play-button-demo btn btn-primary" onclick="wavesurfer_orig_6.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_orig_6 = WaveSurfer.create({
+                                container: '#orig_waveform_6',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_orig_6.load('data/Avid/sp42/sp42_sen6_very.wav');
+                </script>
+           </td>
+            <td>
+                <div id="target_waveform_6"></div>
+                <button id="target_waveform_6" class="play-button-demo btn btn-primary" onclick="wavesurfer_target_6.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_target_6 = WaveSurfer.create({
+                                container: '#target_waveform_6',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_target_6.load('data/Avid/sp45/sp45_sen6_norm.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_spk_6"></div>
+                <button id="freevc_spk_6" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_spk_6.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_spk_6 = WaveSurfer.create({
+                                container: '#freevc_spk_6',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_spk_6.load('data/Avid/sp42/sp42_sen6_very2norm_freevc_spk_inter_same.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_lmb_6"></div>
+                <button id="freevc_lmb_6" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_lmb_6.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_lmb_6 = WaveSurfer.create({
+                                container: '#freevc_lmb_6',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_lmb_6.load('data/Avid/sp42/sp42_sen6_very2norm_freevc_lmb_inter_same.wav');
+                </script>
+           </td>
+           <td>
+            <div id="token_enc_6"></div>
+            <button id="token_enc_6" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_enc_6.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_enc_6 = WaveSurfer.create({
+                            container: '#token_enc_6',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_enc_6.load('data/Avid/sp42/sp42_sen6_very2norm_token_enc_inter_same.wav');
+            </script>
+            </td>
+            <td>
+            <div id="token_prd_6"></div>
+            <button id="token_prd_6" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_prd_6.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_prd_6 = WaveSurfer.create({
+                            container: '#token_prd_6',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_prd_6.load('data/Avid/sp42/sp42_sen6_very2norm_token_prd_inter_same.wav');
+            </script>
+            </td>
+        </tr>
+        <tr>
+            <th>Soft to Loud</th>
+            <td>
+                <div id="orig_waveform_7"></div>
+                <button id="orig_waveform_7" class="play-button-demo btn btn-primary" onclick="wavesurfer_orig_7.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_orig_7 = WaveSurfer.create({
+                                container: '#orig_waveform_7',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_orig_7.load('data/Avid/sp42/sp42_sen7_soft.wav');
+                </script>
+           </td>
+            <td>
+                <div id="target_waveform_7"></div>
+                <button id="target_waveform_7" class="play-button-demo btn btn-primary" onclick="wavesurfer_target_7.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_target_7 = WaveSurfer.create({
+                                container: '#target_waveform_7',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_target_7.load('data/Avid/sp45/sp45_sen7_loud.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_spk_7"></div>
+                <button id="freevc_spk_7" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_spk_7.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_spk_7 = WaveSurfer.create({
+                                container: '#freevc_spk_7',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_spk_7.load('data/Avid/sp42/sp42_sen7_soft2loud_freevc_spk_inter_same.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_lmb_7"></div>
+                <button id="freevc_lmb_7" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_lmb_7.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_lmb_7 = WaveSurfer.create({
+                                container: '#freevc_lmb_7',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_lmb_7.load('data/Avid/sp42/sp42_sen7_soft2loud_freevc_lmb_inter_same.wav');
+                </script>
+           </td>
+           <td>
+            <div id="token_enc_7"></div>
+            <button id="token_enc_7" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_enc_7.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_enc_7 = WaveSurfer.create({
+                            container: '#token_enc_7',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_enc_7.load('data/Avid/sp42/sp42_sen7_soft2loud_token_enc_inter_same.wav');
+            </script>
+            </td>
+            <td>
+            <div id="token_prd_7"></div>
+            <button id="token_prd_7" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_prd_7.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_prd_7 = WaveSurfer.create({
+                            container: '#token_prd_7',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_prd_7.load('data/Avid/sp42/sp42_sen7_soft2loud_token_prd_inter_same.wav');
+            </script>
+            </td>
+        </tr>
+        <tr>
+            <th>Loud to Soft</th>
+            <td>
+                <div id="orig_waveform_8"></div>
+                <button id="orig_waveform_8" class="play-button-demo btn btn-primary" onclick="wavesurfer_orig_8.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_orig_8 = WaveSurfer.create({
+                                container: '#orig_waveform_8',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_orig_8.load('data/Avid/sp42/sp42_sen8_loud.wav');
+                </script>
+           </td>
+            <td>
+                <div id="target_waveform_8"></div>
+                <button id="target_waveform_8" class="play-button-demo btn btn-primary" onclick="wavesurfer_target_8.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_target_8 = WaveSurfer.create({
+                                container: '#target_waveform_8',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_target_8.load('data/Avid/sp45/sp45_sen8_soft.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_spk_8"></div>
+                <button id="freevc_spk_8" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_spk_8.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_spk_8 = WaveSurfer.create({
+                                container: '#freevc_spk_8',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_spk_8.load('data/Avid/sp42/sp42_sen8_loud2soft_freevc_spk_inter_same.wav');
+                </script>
+           </td>
+            <td>
+                <div id="freevc_lmb_8"></div>
+                <button id="freevc_lmb_8" class="play-button-demo btn btn-primary" onclick="wavesurfer_freevc_lmb_8.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_freevc_lmb_8 = WaveSurfer.create({
+                                container: '#freevc_lmb_8',
+                                waveColor: 'violet',
+                                progressColor: 'purple'
+                            });
+                    wavesurfer_freevc_lmb_8.load('data/Avid/sp42/sp42_sen8_loud2soft_freevc_lmb_inter_same.wav');
+                </script>
+           </td>
+           <td>
+            <div id="token_enc_8"></div>
+            <button id="token_enc_8" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_enc_8.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_enc_8 = WaveSurfer.create({
+                            container: '#token_enc_8',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_enc_8.load('data/Avid/sp42/sp42_sen8_loud2soft_token_enc_inter_same.wav');
+            </script>
+            </td>
+            <td>
+            <div id="token_prd_8"></div>
+            <button id="token_prd_8" class="play-button-demo btn btn-primary" onclick="wavesurfer_token_prd_8.playPause()">
+                <i class="fa fa-play"></i>
+                Play
+                /
+                <i class="fa fa-pause"></i>
+                Pause
+            </button>
+            <script>
+                var wavesurfer_token_prd_8 = WaveSurfer.create({
+                            container: '#token_prd_8',
+                            waveColor: 'violet',
+                            progressColor: 'purple'
+                        });
+                wavesurfer_token_prd_8.load('data/Avid/sp42/sp42_sen8_loud2soft_token_prd_inter_same.wav');
             </script>
             </td>
         </tr>
