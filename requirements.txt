@@ -1,0 +1,3 @@
+# Canonical dependency declaration lives in pyproject.toml.
+# This keeps pip -r workflows equivalent to the complete installation.
+-e .[all]

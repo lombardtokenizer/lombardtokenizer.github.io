@@ -1,0 +1,13 @@
+Audio samples in this directory are demonstration material accompanying the
+LombardTokenizer paper and are not covered automatically by the root code
+license.
+
+The AVID source recordings and any derived outputs remain subject to the
+terms of the source dataset and to any applicable rights of the speakers,
+authors, and dataset providers. The repository does not grant a new blanket
+license for these recordings by including them here. See the AVID dataset
+publication and source distribution for its conditions of use.
+
+The FLombard dataset is referenced by DOI on the project page. No FLombard
+recordings are redistributed in this directory unless explicitly identified
+with their own terms.

@@ -1,93 +1,239 @@
-# LombardTokenizer: Disentanglement and Control of Vocal Effort in a Neural Speech Codec
+# LombardTokenizer
 
-<a href='https://lombardtokenizer.github.io/'><img src='https://img.shields.io/badge/Project-Page-Green'></a> 
+LombardTokenizer is a neural speech codec for disentangling and controlling
+vocal effort. It uses residual vector quantization to separate semantic
+content, vocal effort, and residual acoustic information. The project was
+presented at Interspeech 2025 in Rotterdam.
 
-## Abstract
-Disentangling distinct types of information in speech representations is crucial for improving speech synthesis 
-and voice conversion systems. In this work, we introduce LombardTokenizer, a neural speech codec able to separate 
-features related to vocal effort from other acoustic (and semantic) information. This model is built on SpeechTokenizer, 
-a model proposed in the literature based on multi-stage quantisation, which focused on isolating semantic content in 
-its first quantisation layer. We show that the level of vocal effort can be effectively captured in the second 
-quantisation layer by conditioning the quantisation layer with neural encoders trained to represent vocal effort. 
-Experimental results demonstrate that the proposed method significantly outperforms existing methods in speech 
-conversion between neutral and Lombard speech, while maintaining excellent speech synthesis quality, offering improved 
-control over vocal effort and naturalness of synthesised speech.
+## Project page and audio samples
 
-<br>
-<p align="center">
-    <img src="data/lombardtokenizer.png" width="95%"> <br>
-    Overview
-</p>
-<br>
+The [project page](https://lombardtokenizer.github.io/) presents the paper and
+the accompanying audio demonstrations. It includes:
 
-## Quick Link
-* [Release](#release)
-* [Samples](#samples)
-* [Installation](#installation)
-* [Model List](#model-list)
-* [Usage](#usage)
-* [Train LombardTokenizer](#train-lombardtokenizer)
-    * [Data Preprocess](#data-preprocess)
-    * [Train](#train)
-    * [Inference](#inference)
-* [Citation](#citation)
-* [License](#license)
+- synthesis and reconstruction examples;
+- intra-speaker vocal-effort conversion;
+- inter-speaker vocal-effort conversion;
+- comparisons with the baselines used in the paper.
 
-## Releases
-- [2025/02/19] We released samples from the evaluation of LombardTokenizer.
-- [Planned] Released the codes to train LombardTokenizer, the checkpoints used in the paper and the new dataset FLombard
+The samples used by the page are stored in `docs/assets/audio/`. Their status
+is documented separately in [`docs/assets/audio/NOTICE`](docs/assets/audio/NOTICE)
+and is not inferred from the code license.
 
-## Samples
-[LombardTokenizer](https://lombardtokenizer.github.io/lombardtokenizer.github.io/)
+## Paper
+
+**LombardTokenizer: Disentanglement and Control of Vocal Effort in a Neural
+Speech Codec**
+Maxime Jacquelin, Maëva Garnier, Laurent Girin, Rémy Vincent, and Olivier
+Perrotin
+Interspeech 2025, Rotterdam
+[Paper and DOI](https://doi.org/10.21437/Interspeech.2025-1639)
+
+## Repository contents
+
+~~~text
+lombardtokenizer/       Python package
+configs/                training configurations
+scripts/                training and inference commands
+docs/                   project page and paper audio demonstrations
+licenses/               third-party license texts and mappings
+~~~
 
 ## Installation
-Requirements:
-* Python >= 3.9
-* PyTorch v2.5.1
-* Torchaudio v2.5.1
 
-## Data List
-| Dataset | Usage |Description|
-|:----|:----:|:----|
-|[LibriSpeech-Train-360](https://www.danielpovey.com/files/2015_icassp_librispeech.pdf)|Training|Corpus of approximately 360 hours of 16kHz read English speech from [OpenSLR](https://www.openslr.org/12/)|
-|[Avid](https://www.sciencedirect.com/science/article/pii/S0167639324000116)|Fine-tuning|Calibrated speech recordings produced by 50 speakers in four intensity categories from [Zenodo](https://zenodo.org/records/7948300)|
-|[FLombard]()|Zero-shot evaluation|Newly collected dataset featuring 38 French speakers producing Lombard speech|
+From the repository root:
 
-## Model List
-| Model| Dataset |Description|
-|:----|:----:|:----|
-|[HuBERT](https://arxiv.org/pdf/2106.07447)|None|Pre-trained model from [HugginFace](https://huggingface.co/facebook/hubert-base-ls960)|
-|[mHuBERT](https://arxiv.org/pdf/2406.06371)|None|Pre-trained model from [HugginFace](https://huggingface.co/utter-project/mHuBERT-147)|
-|[FreeVC](https://arxiv.org/pdf/2210.15418)|LibriSpeech and Avid|Implementation of FreeVC following [OlaWod](https://github.com/OlaWod/FreeVC)|
-|[EnCodec](https://arxiv.org/pdf/2210.13438)|LibriSpeech and Avid|Implementation of EnCodec following [AcademiCodec](https://github.com/yangdongchao/AcademiCodec/tree/master?tab=readme-ov-file)|
-|[SpeechTokenizer](https://arxiv.org/pdf/2308.16692)|LibriSpeech and Avid|Implementation of SpeechTokenizer following [SpeechTokenizer](https://github.com/ZhangXInFD/SpeechTokenizer/tree/main)|
-|[LombardTokenzer_lomb-1]()|LibriSpeech and Avid|Regularised with the d-vector-based encoder|
-|[LombardTokenzer_lomb-2]()|LibriSpeech and Avid|Regularised with the intensity predictor|
+~~~bash
+python -m pip install -e .
+~~~
 
-## Usage
-To be added
+Semantic feature extraction additionally requires Transformers:
+
+~~~bash
+python -m pip install -e ".[semantic]"
+~~~
+
+The package requires Python 3.8 or newer, PyTorch, torchaudio, NumPy,
+einops, and PyYAML. The complete dependency declaration is in
+[`pyproject.toml`](pyproject.toml); `requirements.txt` provides the editable
+installation with the semantic extra.
+
+## Architecture
+
+The released LT2 recipe uses eight residual vector-quantization stages:
+
+~~~text
+VQ1       -> semantic representation
+VQ2       -> vocal effort
+VQ3-VQ8   -> residual acoustic information
+~~~
+
+VQ1 is distilled from mHuBERT features and VQ2 is conditioned on an E2
+vocal-effort encoder. The external `utter-project/mHuBERT-147` model is used
+for semantic features; its checkpoint is downloaded separately and is not
+redistributed here. The semantic hidden layer must be selected explicitly for
+each experiment.
+
+## Data preparation
+
+### mHuBERT features
+
+The semantic extraction manifest uses two tab-separated fields:
+
+~~~text
+audio_path<TAB>semantic_feature_path
+data/audio/spk1_001.wav<TAB>data/mhubert/spk1_001.npy
+~~~
+
+Extract features with a layer selected for the experiment:
+
+~~~bash
+python scripts/extract_semantic_features.py --model utter-project/mHuBERT-147 --audio-dir data/audio --output-dir data/mhubert --layer 8
+~~~
+
+The value `8` is an example invocation, not a paper-verified default. Replace
+it with the hidden layer selected for the experiment.
+
+### Vocal-effort encoder
+
+The E2 manifest uses three tab-separated fields:
+
+~~~text
+audio_path<TAB>speaker_id<TAB>intensity
+data/audio/spk1_001.wav<TAB>spk1<TAB>72.4
+~~~
+
+Prepare the train and validation manifests referenced by
+`configs/vocal_effort_encoder.yaml` before training.
+
+## Train the vocal-effort encoder
+
+~~~bash
+python scripts/train_vocal_effort_encoder.py --config configs/vocal_effort_encoder.yaml
+~~~
+
+The E2 checkpoint stores the speaker-wise intensity normalization statistics
+and the complete encoder configuration.
 
 ## Train LombardTokenizer
-To be added
 
-### Data Preprocess
-To be added
+Set `semantic.layer` and `vocal_effort.checkpoint` in
+`configs/lt2.yaml`, then run:
 
-### Train
-To be added
+~~~bash
+python scripts/train.py --config configs/lt2.yaml
+~~~
 
-### Inference
-To be added
+The codec checkpoint embeds the model configuration. `last.pt` stores the
+latest training state and `best.pt` stores the best validation state when a
+validation manifest is configured.
 
-## Acknowledgements
-This implementation uses parts of the code from the following Github repos:
-- [SpeechTokenizer](https://github.com/ZhangXInFD/SpeechTokenizer/tree/main)
-- [AcademiCodec](https://github.com/yangdongchao/AcademiCodec/tree/master?tab=readme-ov-file)
-- [FreeVC](https://github.com/OlaWod/FreeVC)
+## Resume training
+
+Resuming restores the model, optimizer, scheduler, epoch, step, best
+validation loss, and relevant training statistics:
+
+~~~bash
+python scripts/train.py --config configs/lt2.yaml --resume path/to/last.pt
+~~~
+
+Replace `path/to/last.pt` with the checkpoint to resume.
+
+## Fine-tuning
+
+Fine-tuning starts from model weights with a fresh optimizer and scheduler:
+
+~~~bash
+python scripts/finetune.py --config configs/lt2_finetune.yaml --checkpoint path/to/pretraining.pt
+~~~
+
+Replace `path/to/pretraining.pt` with the pretraining checkpoint. To continue
+a complete fine-tuning state instead, pass `--resume` rather than
+`--checkpoint`.
+
+## Reconstruction and vocal-effort conversion
+
+Reconstruct a waveform with:
+
+~~~bash
+python scripts/reconstruct.py --checkpoint path/to/model.pt --input input.wav --output reconstruction.wav
+~~~
+
+Convert vocal effort by swapping VQ2 codes between a source and a reference:
+
+~~~bash
+python scripts/convert.py --checkpoint path/to/model.pt --source source.wav --reference reference.wav --output converted.wav
+~~~
+
+Replace the example paths with actual local files.
+
+The Python API is also available:
+
+~~~python
+from lombardtokenizer import LombardTokenizer
+
+model = LombardTokenizer.load_from_checkpoint("last.pt")
+reconstruction = model.reconstruct(audio)
+converted = model.convert_vocal_effort(source_audio, reference_audio)
+~~~
+
+VQ2 conversion requires source and reference codes with equal batch and time
+dimensions; temporal interpolation is not implicit.
+
+## Datasets
+
+### AVID
+
+AVID provides calibrated speech recordings in four vocal-effort categories and
+is used for the demonstrations and fine-tuning described by the paper. See the
+[AVID publication](https://www.sciencedirect.com/science/article/pii/S0167639324000116)
+and its [Zenodo distribution](https://zenodo.org/records/7948300) for dataset
+terms.
+
+### FLombard
+
+FLombard is the French Lombard-speech dataset used for evaluation. The dataset
+record is available at
+<https://doi.org/10.5281/zenodo.17340497>.
+
+## Limitations
+
+- the mHuBERT hidden layer must be selected for each experiment;
+- the E2 frontend is an implementation choice;
+- VQ2 conversion requires equal source and reference code lengths;
+- paper-table reproduction and WER, EER, JS-F0, and JS-Slope evaluation are
+  outside this package.
 
 ## Citation
-To be added
+
+~~~bibtex
+@inproceedings{jacquelin25_interspeech,
+  title = {{LombardTokenizer: Disentanglement and Control of Vocal Effort in a Neural Speech Codec}},
+  author = {Maxime Jacquelin and Maëva Garnier and Laurent Girin and Rémy Vincent and Olivier Perrotin},
+  year = {2025},
+  booktitle = {{Interspeech 2025}},
+  pages = {5778--5782},
+  doi = {10.21437/Interspeech.2025-1639},
+  issn = {2958-1796}
+}
+~~~
+
+## Acknowledgements
+
+The codec contains source-derived components from EnCodec and
+vector-quantize-pytorch; their license texts and file mappings are documented
+in [`NOTICE`](NOTICE) and [`licenses/README.md`](licenses/README.md).
+SpeechTokenizer and AcademiCodec are cited as scientific and architectural
+references. FreeVC and other comparison systems may appear on the project page
+as paper baselines; they are not distributed by this repository.
 
 ## License
-The code in this repository is released under the Creative Commons Zero v1.0 Universal license as found in the
-[LICENSE](LICENSE) file.    
+
+The root [`LICENSE`](LICENSE) applies to LombardTokenizer-specific code. The
+third-party portions identified in [`NOTICE`](NOTICE) retain their upstream
+licenses, whose texts are in [`licenses/`](licenses/). The external mHuBERT
+checkpoint is not included and has independent model terms. Audio samples have
+separate dataset and rights conditions documented in
+[`docs/assets/audio/NOTICE`](docs/assets/audio/NOTICE).
+
+The Python package configuration does not include `docs/assets/audio/` in its
+wheel or source package data.

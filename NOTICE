@@ -1,0 +1,34 @@
+LombardTokenizer notices
+
+LombardTokenizer-specific code
+------------------------------
+The root LICENSE applies to the LombardTokenizer-specific contributions in
+this repository. It does not replace the upstream terms for third-party-origin
+code, external models, or demonstration audio.
+
+Third-party source code
+-----------------------
+The source-derived codec modules and their applicable upstream license texts
+are mapped in licenses/README.md:
+
+* EnCodec-derived building blocks are covered by the MIT license in
+  licenses/ENCODEC-MIT.txt.
+* The source-derived portions of vector-quantize-pytorch in
+  lombardtokenizer/codec/rvq.py are covered by the MIT license in
+  licenses/VECTOR-QUANTIZE-MIT.txt.
+
+Scientific dependencies and models
+-----------------------------------
+SpeechTokenizer and AcademiCodec are scientific and architectural references;
+no source code or checkpoint from either project is redistributed here.
+
+The external utter-project/mHuBERT-147 checkpoint is downloaded separately and
+is not included in this repository. Its use remains subject to the terms
+published by its model owner.
+
+Demonstration audio
+-------------------
+The WAV files under docs/assets/audio/ are paper demonstration material and
+are not covered automatically by the root code license. Their dataset,
+speaker, and output conditions are documented in
+docs/assets/audio/NOTICE.

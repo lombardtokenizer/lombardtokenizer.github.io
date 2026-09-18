@@ -1,0 +1,77 @@
+stage: finetune
+
+model:
+  sample_rate: 16000
+  dimension: 1024
+  codebook_size: 1024
+  num_quantizers: 8
+  semantic_rvq_layer: 0
+  vocal_effort_rvq_layer: 1
+  n_filters: 64
+  strides: [8, 5, 4, 2]
+  bidirectional: true
+  dilation_base: 2
+  residual_kernel_size: 3
+  n_residual_layers: 1
+  lstm_layers: 2
+  activation: ELU
+
+semantic:
+  model_name_or_path: utter-project/mHuBERT-147
+  dimension: 768
+  layer: null  # set explicitly; no paper-specific default is assumed
+
+vocal_effort:
+  type: intensity
+  dimension: 32
+  normalization: rms
+  target_normalization: speaker_min_max
+  speaker_statistics_required: true
+  checkpoint: null  # path to the trained E2 checkpoint
+
+training:
+  seed: 1234
+  epochs: 20
+  batch_size: 32
+  learning_rate: 1.0e-4
+  segment_size: 48000
+  shuffle: true
+  num_workers: 4
+  drop_last: true
+
+loss:
+  semantic_distill_weight: 0.15
+  vocal_effort_distill_weight: 0.15
+  reconstruction_weight: 1.0
+  commitment_weight: 1.0
+  mel_weights: [45.0, 1.0, 1.0, 1.0]
+  mel_resolutions:
+    - n_fft: 1024
+      hop_length: 256
+      win_length: 1024
+      n_mels: 80
+    - n_fft: 512
+      hop_length: 128
+      win_length: 512
+      n_mels: 64
+    - n_fft: 256
+      hop_length: 64
+      win_length: 256
+      n_mels: 40
+    - n_fft: 128
+      hop_length: 32
+      win_length: 128
+      n_mels: 20
+  adversarial_weight: 1.0
+  feature_matching_weight: 1.0
+
+discriminator:
+  type: codec
+  channels: 16
+
+data:
+  train_manifest: data/manifests/avid_train.tsv
+  valid_manifest: data/manifests/avid_valid.tsv
+
+checkpoint:
+  output_dir: checkpoints/lombardtokenizer_avid

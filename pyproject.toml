@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lombardtokenizer"
+version = "0.1.0"
+description = "Neural speech codec for disentangling and controlling vocal effort."
+readme = "README.md"
+requires-python = ">=3.8"
+license = "LicenseRef-LombardTokenizer-Research"
+license-files = ["LICENSE", "licenses/*.txt"]
+authors = [
+    {name = "Maxime Jacquelin"},
+    {name = "Maëva Garnier"},
+    {name = "Laurent Girin"},
+    {name = "Rémy Vincent"},
+    {name = "Olivier Perrotin"},
+]
+keywords = ["speech codec", "speech representation", "vocal effort"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = [
+    "einops",
+    "numpy",
+    "PyYAML",
+    "torch",
+    "torchaudio",
+]
+
+[project.urls]
+Paper = "https://doi.org/10.21437/Interspeech.2025-1639"
+Repository = "https://github.com/lombardtokenizer/lombardtokenizer.github.io"
+Project = "https://lombardtokenizer.github.io/"
+
+[project.optional-dependencies]
+semantic = [
+    "transformers",
+]
+all = [
+    "transformers",
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.data-files]
+"share/lombardtokenizer" = ["README.md", "LICENSE", "NOTICE", "CITATION.cff"]
+"share/lombardtokenizer/licenses" = ["licenses/*.txt", "licenses/README.md"]
+"share/lombardtokenizer/configs" = ["configs/*.yaml"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+    "lombardtokenizer*",
+]

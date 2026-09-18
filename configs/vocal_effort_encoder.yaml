@@ -1,0 +1,38 @@
+stage: vocal_effort
+
+vocal_effort:
+  type: intensity
+  dimension: 32
+  normalization: rms
+  target_normalization: speaker_min_max
+  speaker_statistics_required: true
+  model:
+    channels: [16, 32, 64]
+    kernels: [[3, 3], [3, 3], [3, 3]]
+    strides: [[1, 1], [1, 1], [1, 1]]
+    paddings: [[1, 1], [1, 1], [1, 1]]
+    pools: [2, 2]
+    lstm_hidden_size: 128
+    output_dimension: 1
+    activation: ReLU
+    output_activation: Sigmoid
+    dropout: 0.2
+    bidirectional: false
+
+training:
+  seed: 1234
+  epochs: 20
+  batch_size: 32
+  learning_rate: 1.0e-4
+  sample_rate: 16000
+  segment_size: 48000
+  shuffle: true
+  num_workers: 4
+  drop_last: true
+
+data:
+  train_manifest: data/manifests/avid_train.tsv
+  valid_manifest: data/manifests/avid_valid.tsv
+
+checkpoint:
+  output_dir: checkpoints/lombardtokenizer_lt2

@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use LombardTokenizer, please cite the Interspeech 2025 paper."
+title: "LombardTokenizer: Disentanglement and Control of Vocal Effort in a Neural Speech Codec"
+type: conference-paper
+authors:
+  - family-names: Jacquelin
+    given-names: Maxime
+  - family-names: Garnier
+    given-names: Maëva
+  - family-names: Girin
+    given-names: Laurent
+  - family-names: Vincent
+    given-names: Rémy
+  - family-names: Perrotin
+    given-names: Olivier
+year: 2025
+doi: 10.21437/Interspeech.2025-1639
+url: https://www.isca-archive.org/interspeech_2025/jacquelin25_interspeech.html
+repository-code: https://github.com/lombardtokenizer/lombardtokenizer.github.io
+preferred-citation:
+  type: conference-paper
+  title: "LombardTokenizer: Disentanglement and Control of Vocal Effort in a Neural Speech Codec"
+  authors:
+    - family-names: Jacquelin
+      given-names: Maxime
+    - family-names: Garnier
+      given-names: Maëva
+    - family-names: Girin
+      given-names: Laurent
+    - family-names: Vincent
+      given-names: Rémy
+    - family-names: Perrotin
+      given-names: Olivier
+  year: 2025
+  collection-title: Interspeech 2025
+  pages: 5778-5782
+  doi: 10.21437/Interspeech.2025-1639
